@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "target": "es5",
+        "rootDir": "server",
+        "outDir": "./build",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "lib": ["es6"]
+    },
+
+    "include": [
+        "./*.ts"
+    ],
+    
+    "exclude": [
+        "node_modules"
+    ]
+}
