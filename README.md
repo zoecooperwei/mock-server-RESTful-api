@@ -1,8 +1,8 @@
 # mock-server-RESTful-api
 
--- Using `NodeJS`, `ExpressJS` to build a mock server.  
+-- Using `NodeJS`, `ExpressJS` to build a `mock server`.  
 
--- Using `POSTMAN` to test RESTful api.  
+-- Using `POSTMAN` to test `RESTful api`.  
 
 -- URL: http://localhost3001  
 
