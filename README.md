@@ -12,9 +12,13 @@ Postman Get Test:
 
 ![alt](https://github.com/zoecooperwei/image-library/blob/master/mock-server/mock-server-get.png)  
 
+API Worked.
+
 Postman Post Test:  
 
 ![alt](https://github.com/zoecooperwei/image-library/blob/master/mock-server/mock-server-post1.png)  
 
-![alt](https://github.com/zoecooperwei/image-library/blob/master/mock-server/mock-server-postcheck.png)
+![alt](https://github.com/zoecooperwei/image-library/blob/master/mock-server/mock-server-postcheck.png)  
+
+New Post Worked.
 
