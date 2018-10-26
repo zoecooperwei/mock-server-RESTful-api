@@ -13,12 +13,12 @@ const app = express();
 
 app.use(express.json());
 
-// url对应 http request，页面展示内容对应http response
+// req == http request，res == http response
 app.get('/', (req, res) => {
     res.send('Welcome to TOP 20 movies');
 })
 
-app.get('/api/movies', (req, res) => {
+app.get('/api', (req, res) => {
     // res.send(req.params);
     res.json(movies);
 })
@@ -27,7 +27,7 @@ app.get('/api/movies', (req, res) => {
 app.get('/api/movies/:id', (req, res) => {
     // res.send(req.params);
     const m = movies.find(e => e.id == req.params.id);
-    // set http status as 404 if there is no course with given id found in the array
+    // set http status as 404 if there is no movie with given id found in the array
     if(!m) {
         res.status(404).send('Ooops! No film found');
         return;
@@ -35,7 +35,27 @@ app.get('/api/movies/:id', (req, res) => {
     res.json(m);
 })
 
-// create a new movie
+// get movie with a given id in url by using query
+app.get('/api/movies', (req, res) => {
+    const m = movies.find(e => e.id == req.query.id);
+    if(!m) {
+        res.status(404).send('Ooops! No film found');
+        return;
+    }
+    res.json(m);
+})
+
+// get movie with a given name in url by using query; 
+// the url request is like: http://localhost3001/api/movies?name=xxx
+app.get('/api/movies', (req, res) => {
+    // res.send(req.params);
+    const m = movies.find(e => e.name = req.query.name);
+    console.log(m);
+    // set http status as 404 if there is no movie with given id found in the array
+    res.json(m);
+})
+
+// post a new movie
 app.post('/api/movies', (req, res) => {
     // validation for req.body.name of short name or null
     if(!req.body.name || req.body.name.length < 3) {
