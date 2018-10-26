@@ -71,7 +71,7 @@ app.post('/api/movies', (req, res) => {
     res.json(newM);
 })
 
-// create Course class
+// create Movie class
 export class Movie {
     constructor(public id:number, 
         public name:string, 

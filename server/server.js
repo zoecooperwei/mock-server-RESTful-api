@@ -61,7 +61,7 @@ app.post('/api/movies', function (req, res) {
     // convert it to json format
     res.json(newM);
 });
-// create Course class
+// create Movie class
 var Movie = /** @class */ (function () {
     function Movie(id, name, year, director, rating, desp) {
         this.id = id;
