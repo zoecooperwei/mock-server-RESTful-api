@@ -11,11 +11,11 @@ var express = require("express");
 // const express = require('express');
 var app = express();
 app.use(express.json());
-// url对应 http request，页面展示内容对应http response
+// req == http request，res == http response
 app.get('/', function (req, res) {
     res.send('Welcome to TOP 20 movies');
 });
-app.get('/api/movies', function (req, res) {
+app.get('/api', function (req, res) {
     // res.send(req.params);
     res.json(movies);
 });
@@ -23,14 +23,32 @@ app.get('/api/movies', function (req, res) {
 app.get('/api/movies/:id', function (req, res) {
     // res.send(req.params);
     var m = movies.find(function (e) { return e.id == req.params.id; });
-    // set http status as 404 if there is no course with given id found in the array
+    // set http status as 404 if there is no movie with given id found in the array
     if (!m) {
         res.status(404).send('Ooops! No film found');
         return;
     }
     res.json(m);
 });
-// create a new movie
+// get movie with a given id in url by using query
+app.get('/api/movies', function (req, res) {
+    var m = movies.find(function (e) { return e.id == req.query.id; });
+    if (!m) {
+        res.status(404).send('Ooops! No film found');
+        return;
+    }
+    res.json(m);
+});
+// get movie with a given name in url by using query; 
+// the url request is like: http://localhost3001/api/movies?name=xxx
+app.get('/api/movies', function (req, res) {
+    // res.send(req.params);
+    var m = movies.find(function (e) { return e.name = req.query.name; });
+    console.log(m);
+    // set http status as 404 if there is no movie with given id found in the array
+    res.json(m);
+});
+// post a new movie
 app.post('/api/movies', function (req, res) {
     // validation for req.body.name of short name or null
     if (!req.body.name || req.body.name.length < 3) {
@@ -67,7 +85,7 @@ var movies = [
     new Movie(8, "Schindler's List", 1993, 'Steven Spielberg', 9.5, 'Save the World'),
     new Movie(9, "Inception", 2010, 'Christopher Nolan', 9.3, 'You`re waiting for a train, a train that will take you far away. You know where you hope this train will take you, but you can`t be sure. But it doesn`t matter - because we`ll be together'),
     new Movie(10, "WALL·E", 2008, 'Andrew Stanton', 9.3, 'I don`t want to survive. I want to live'),
-    new Movie(11, "Hachi: A Dog's Tale", 2009, 'Lasse Hallström', 9.3, 'never forget anyone you loved'),
+    new Movie(11, "Hachi: A Dog's Tale", 2009, 'Lasse Hallström', 9.3, 'Never forget anyone you loved'),
     new Movie(12, "3 Idiots", 2009, 'Rajkumar Hirani', 9.2, 'Life is about moving on,accepting changes, and looking forward to what makes you stronger and more complete'),
     new Movie(13, "The Legend of 1900", 1998, 'Giuseppe Tornatore', 9.2, 'We laughed and kept saying `See you soon`. But inside we both knew we`d never see each other again'),
     new Movie(14, "Les choristes", 2004, 'Christophe Barratier', 9.2, 'paper airplane'),
